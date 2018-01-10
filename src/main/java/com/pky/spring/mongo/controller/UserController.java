@@ -10,6 +10,8 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Repository
 public class UserController{
@@ -72,5 +74,12 @@ public class UserController{
 
 	public User getUserByMobNumber(String mobNumber){
 		return userMongoRepository.findByMobNumber(mobNumber);
+	}
+
+	public List<User> getAllUserOfName(String firstName){
+		Query query = new Query();
+		query.addCriteria(Criteria.where("firstName").is(firstName));
+
+		return mongoTemplate.find(query, User.class);
 	}
 }
