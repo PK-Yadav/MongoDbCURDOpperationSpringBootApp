@@ -8,4 +8,5 @@ public interface UserMongoRepository extends MongoRepository<User, Integer>{
 	User findFirstByUserId(int userId);
 
 	User findByMobNumber(String mobNumber);
+
 }
